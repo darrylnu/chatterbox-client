@@ -20,12 +20,13 @@
         <select name="chatroom"></select>
       <br><br>
     </form>
-      <!-- Your HTML goes here! -->
-      
 
-      <form method="post">
-        <input type="text">
-        <input type="submit" value="submit">
+      <!-- Your HTML goes here! -->
+      <button type="button" class="clear">Clear Chat History</button>
+
+      <form method="post" id="send">
+        <input type="text" id="message">
+        <input type="submit"  value="submit" class='submit'>
       </form>
       <div id="chats">
       </div>
