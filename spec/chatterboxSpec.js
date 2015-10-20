@@ -22,6 +22,8 @@ describe('chatterbox', function() {
       ajaxSpy.reset();
     });
 
+
+
     describe('sending', function() {
       it('should have a send method', function(){
         expect(app.send).to.be.ok;
@@ -35,6 +37,8 @@ describe('chatterbox', function() {
         expect(ajaxOptions.type).to.equal('POST');
         done();
       });
+
+
 
       it('should send the correct message along with the request', function(done){
         var message = {
