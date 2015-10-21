@@ -17,17 +17,15 @@ var app = {
       // app.init();
       // event.preventDefault();
 
-      $('.userName').on('click',function(){
-        console.log('hi');
-        app.addFriend();
-      })
+
        // $('#send .submit').on('click',function(event){
        //    event.preventDefault();
        //    console.log('inside of handleSubmit');
        //    app.send(message)
        //  })
-
+        app.addFriend()
        app.handleSubmit()
+       app.clearMessageFeed();
     })
   },
 
@@ -39,6 +37,7 @@ var app = {
       data: JSON.stringify(message),
       contentType: 'application/json',
       success: function (data) {
+        console.log('data sent to sever', data)
         console.log('chatterbox: Message sent');
       },
       error: function (data) {
@@ -56,6 +55,7 @@ var app = {
       data: JSON.stringify(message),
       contentType: 'application/json',
       success: function (data) {
+        console.log('data from sever', data)
         console.log('chatterbox: Message sent');
       },
       error: function (data) {
@@ -65,8 +65,11 @@ var app = {
     });
   },
 
-  clearMessageFeed: function(){
-    $('#chats').empty();
+  clearMessageFeedFromDOM: function(){
+    $('#clear-messages').on('click',function(){
+      $('#chats').empty();
+      console.log('messages deleted from DOM')
+     })
   },
 
   // renderMessage: function(){
@@ -77,9 +80,11 @@ var app = {
     var user = message.username;
     var userText = message.text;
     
-    var $post = $('<div class="userName"/>').text(message.username)
-    .append('<div class="userMessage"/>')
-    .text(userText);
+    var $post = $('<div class="userName"/>')
+      .text(message.username)
+      .append('<div class="userMessage"/>')
+      .text(userText);
+
     $('#chats').prepend($post);
   },
 
@@ -87,13 +92,15 @@ var app = {
 
   addRoom: function(roomname){
     var room = $("<option value = ''" + roomname + "" + "/>")
-
-
     $('#roomSelect').append(room)
   },
 
   addFriend: function(friendName){
     friends.push(friendName);
+    $('.userName').on('click',function(){
+      console.log('hi');
+      app.addFriend();
+     })
   },
 
   handleSubmit: function(){
@@ -106,6 +113,7 @@ var app = {
 
     })
   }
-
-
 }
+
+
+app.init()
